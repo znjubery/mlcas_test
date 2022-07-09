@@ -19,10 +19,10 @@ leaderboard:
   - id: 1
     schema:
       {
-        "labels": ["Metric1", "Metric2", "Metric3", "Total"],
+        "labels": ["RMSE", "Metric2", "Metric3", "Total"],
         "default_order_by": "Total",
         "metadata": {
-          "Metric1": {
+          "RMSE": {
             "sort_ascending": True,
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
           },
