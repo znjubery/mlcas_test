@@ -1,3 +1,77 @@
-<p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+<p>This challenge is part of the <a href="https://mlcas2022.github.io/">MLCAS2022</a> workshop. Reliable seed yield estimation plays a vital role in plant breeding programs for cultivar development of major row crops. It helps these programs to select new varieties and make advancement decisions in cultivar development. One application scene is to count the pods and predict genotype seed yield rank from in-field video data collected by a ground robot.</p>
 
-<p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+<p>In this competition, you will utilize a dataset of in-field soybean videos captured by the robot. Our dataset contains complex data for soybean pod count prediction. Please refer to the <a href="https://spj.sciencemag.org/journals/plantphenomics/2021/9846470/">paper</a> for more details about the dataset and baselines.</p>
+<br>
+
+<p><b>Dataset</b></p>
+
+<p>You can register your team's information <a href="https://forms.gle/wfghup33vwqXtZn7A">here</a>. Access to the dataset will be granted once the registered information is validated.</p>
+
+<p>This challenge has two phases: <b>Dev Phase</b> and <b>Test Phase</b>. The <b>training dataset</b> and the <b>validation dataset</b> are provided during the <b>Dev Phase</b>, while the <b>testing dataset</b> will become available for prediction once the <b>Test Phase</b> begins.</p>
+
+<p>The training dataset has one subfolder: <b>videos_train</b></p>
+<p>These are the part of the videos that were taken for the data set for the published <a href="https://spj.sciencemag.org/journals/plantphenomics/2021/9846470/">paper</a>. They are selected to be used as the training data for this challenge.</p>
+
+<p>There are 2 csv files in the main folder of the <b>training dataset</b>: <b>pod_detection_annotations.csv</b>, and <b>train_set.csv</b>.</p>
+<ol>
+<li><b>pod_detection_annotations.csv:</b> this csv file contains the image annotations for frames extracted from the videos. Each frame is labeled with manually-draw bounding boxes for the pod identification portion of the model.</p>
+<ul>
+<li><b>filename:</b> video_10_000397.png as an example was from video 10 and the 397th video frame that was extracted as a .png image. In the annotated dataset csv file the filename will match with the corresponding extracted frames. (The extracted frames are not included in the training dataset.)</li>
+</ul>
+</li>
+
+<li><b>train_set.csv:</b> this contains the ground truth information of the plots. There are 12 columns:</p>
+<ul>
+<li><b>Video:</b> This is the name of the video that the data was collected from. </li>
+<li><b>Side:</b> Images were taken on each side of the plot so each plot will have side 1 and side 2.</li>
+<li><b>Range:</b> The field is laid out in an X, Y Grid so the range would be the Y variable or the row.</li>
+<li><b>Pass:</b> This is the X variable on the Grid or can be referred to as a column. (Pass should be the same as the video value.)</li>
+<li><b>Frame.start:</b> The frame within the video file where the plot comes into focus.</li>
+<li><b>Frame.stop:</b> The frame within the video file where the plot comes out of focus.</li>
+<li><b>Pod_count:</b> This is the number of pods that were manually counted for each plot. (The number of pods will not equal the number of bounding boxes drawn on a given annotation file.)</li>
+<li><b>Seed_weight:</b> The weight of the seed for each plot in grams.</li>
+<li><b>Seed_Count:</b> The number of seeds for each plot.</li>
+<li><b>Rep:</b> This is the replication the plot was in (2-6).</li>
+<li><b>Line:</b> This is the genotype name of a given plot.</li>
+<li><b>Ancestry:</b> This is the diversity of the line. (PI Is an unimproved line, Elite is a public elite line, Diversity is a cross between a PI line and an Elite Line.) </li>
+</ul>
+</li>
+</ol>
+
+<p>Similar to the training dataset, the <b>validation dataset</b> and the <b>test dataset</b> also have one subfolder (<b>videos_val/videos_test</b>). Unlike the training dataset, the annotation csv files for these videos are NOT provided. There is only one csv file (<b>val_set.csv/test_set.csv</b>) that lists the <b>Video</b> name, <b>Side</b>, <b>Range</b>, <b>Pass</b>, <b>Frame.start</b>, <b>Frame.stop</b> of the plots for pod counting prediction.</p>
+
+<br>
+<p><b>Award Amounts</b></p>
+<ul>
+<li><b>1st prize:</b> $2000</li>
+<li><b>2nd prize:</b> $1500</li>
+<li><b>3rd prize:</b> $1000</li>
+</ul>
+
+<br>
+<p><b>Important Dates</b></p>
+<ul>
+<li><b>July 11:</b> Challenge Start Date/Start of the Dev Phase</li>
+<li><b>July 25:</b> Team Composition Deadline</li>
+<li><b>August 24:</b> Start of the Test Phase</li>
+<li><b>August 31:</b> Final Submission Deadline</li>
+<li><b>September 5:</b> Announcement of Results</li>
+</ul>
+
+<br>
+<p><b>Organizing Committee</b></p>
+<ul>
+<li><b>Soumik Sarkar</b>, Associate Professor, Mechanical Engineering, Iowa State University.</li>
+<li><b>Baskar Ganapathysubramanian</b>, Professor, Mechanical Engineering, Iowa State University.</li>
+<li><b>Asheesh K. Singh</b>, Professor, Department of Agronomy, Iowa State University.</li>
+<li><b>Arti Singh</b>, Assistant Professor, Department of Agronomy, Iowa State University.</li>
+<li><b>Wei Guo</b>, Assistant Professor, Field Phenomics Laboratory, Graduate School of Agriculture and Life Sciences, The University of Tokyo.</li>
+<li><b>Masayuki Hirafuji</b>, Project Professor, Field Phenomics Laboratory, Graduate School of Agriculture and Life Sciences, The University of Tokyo.</li>
+<li><b>Seishi Ninomiya</b>, Project Professor, Field Phenomics Laboratory, Graduate School of Agriculture and Life Sciences, The University of Tokyo.</li>
+</ul>
+
+<br>
+<p><b>Contacts</b></p>
+<p>Please use the discussion forum if you have any questions related to the challenge or contact us:</p>
+<p><b>Zaki Jubery</b>, Research Scientist, Iowa State University (znjubery@iastate.edu)</p>
+<p><b>Jiale Feng</b>, Ph.D. student, Iowa State University (colour@iastate.edu)</p>
