@@ -19,16 +19,16 @@ leaderboard:
   - id: 1
     schema:
       {
-        "labels": ["Metric1", "Metric2", "Metric3", "Total"],
-        "default_order_by": "Total",
+        "labels": ["RMSE"."R2"],
+        "default_order_by": "RMSE",
         "metadata": {
-          "Metric1": {
+          "RMSE": {
             "sort_ascending": True,
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "description": "Root mean square.",
           },
-          "Metric2": {
+          "R2": {
             "sort_ascending": True,
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "description": "R2 values.",
           }
         }
       }
