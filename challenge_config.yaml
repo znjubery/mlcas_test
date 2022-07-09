@@ -19,20 +19,20 @@ leaderboard:
   - id: 1
     schema:
       {
-        "labels": ["RMSE", "R2"],
-        "default_order_by": "RMSE",
+        "labels": ["Metric1", "Metric2", "Metric3", "Total"],
+        "default_order_by": "Total",
         "metadata": {
-          "RMSE": {
+          "Metric1": {
             "sort_ascending": True,
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
           },
-          "R2": {
+          "Metric2": {
             "sort_ascending": True,
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
           }
         }
       }
-
+      
 challenge_phases:
   - id: 1
     name: Dev Phase
