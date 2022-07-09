@@ -1,5 +1,6 @@
 import random
-
+from sklearn.metrics import mean_squared_error, r2_score
+import numpy as np
 
 def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwargs):
     print("Starting Evaluation.....")
@@ -40,12 +41,24 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
         }
     """
     output = {}
+    
+    with open(test_annotation_file) as gt:
+        gt_count = np.loadtxt(gt, delimiter=",")
+    
+    with open(user_submission_file) as user:
+        user_count = np.loadtxt(user, delimiter=",")
+        
+    rmse_score = np.sqrt(mean_squared_error(gt_count, user_count))
+    mae_score = mean_absolute_error(gt_count, user_count)
+    r2_score = r2_score(gt_count, user_count)
+    
     if phase_codename == "dev":
         print("Evaluating for Dev Phase")
+        
         output["result"] = [
             {
                 "train_split": {
-                    "Metric1": random.randint(0, 99),
+                    "RMSE": rmse_score,
                     "Metric2": random.randint(0, 99),
                     "Metric3": random.randint(0, 99),
                     "Total": random.randint(0, 99),
@@ -58,17 +71,10 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
     elif phase_codename == "test":
         print("Evaluating for Test Phase")
         output["result"] = [
-            {
-                "train_split": {
-                    "Metric1": random.randint(0, 99),
-                    "Metric2": random.randint(0, 99),
-                    "Metric3": random.randint(0, 99),
-                    "Total": random.randint(0, 99),
-                }
-            },
+           
             {
                 "test_split": {
-                    "Metric1": random.randint(0, 99),
+                    "RMSE": rmse_score,
                     "Metric2": random.randint(0, 99),
                     "Metric3": random.randint(0, 99),
                     "Total": random.randint(0, 99),
